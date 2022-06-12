@@ -1,0 +1,18 @@
+wget -qO- https://repos.influxdata.com/influxdb.key | sudo tee /etc/apt/trusted.gpg.d/influxdb.asc >/dev/null
+source /etc/os-release
+
+echo "deb https://repos.influxdata.com/${ID} ${VERSION_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+sudo apt-get update && sudo apt-get install telegraf
+
+sudo dpkg -i telegraf_1.21.4-1_amd64.deb
+
+curl -sL https://repos.influxdata.com/influxdb.key | gpg --import
+
+wget https://dl.influxdata.com/telegraf/releases/telegraf-1.21.4_linux_amd64.tar.gz.asc
+
+
+gpg --verify telegraf-1.21.4_linux_amd64.tar.gz.asc telegraf-1.21.4_linux_amd64.tar.gz
+
+The Output
+gpg: Good signature from "InfluxDB Packaging Service <support@influxdb.com>" [unknown]
+
